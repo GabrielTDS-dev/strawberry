@@ -405,8 +405,8 @@ def test_optional_annotated_union_preserves_metadata():
     # Because it's Optional, GraphQL type is nullable -> no NON_NULL wrapper
     field_type = ab_field["type"]
 
-    if field_type["kind"] == "NON_NULL":
-        field_type = field_type["ofType"]
+    # The field is Optional, so it must NOT be NON_NULL
+    assert field_type["kind"] != "NON_NULL"
 
     assert field_type["name"] == "Result"
 
