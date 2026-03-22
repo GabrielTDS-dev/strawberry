@@ -265,10 +265,8 @@ class StrawberryAnnotation:
         # If this optional had Annotated metadata (collected into `args` by
         # _get_type_with_args), re-apply it to the rebuilt child_type so metadata
         # (e.g. strawberry.union(...)) is preserved.
-        if args:
-            # Annotated is already imported at file top
+        if args is not None and args:
             child_type = Annotated.__class_getitem__((child_type, *args))
-
         of_type = StrawberryAnnotation(
             annotation=child_type,
             namespace=self.namespace,
