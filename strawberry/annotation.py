@@ -265,7 +265,7 @@ class StrawberryAnnotation:
         # If this optional had Annotated metadata (collected into `args` by
         # _get_type_with_args), re-apply it to the rebuilt child_type so metadata
         # (e.g. strawberry.union(...)) is preserved.
-        if args is not None and args:
+        if args and len(non_optional_types) > 1:
             child_type = Annotated.__class_getitem__((child_type, *args))
         of_type = StrawberryAnnotation(
             annotation=child_type,

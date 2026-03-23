@@ -392,6 +392,7 @@ def test_optional_annotated_union_preserves_metadata():
 
     # Check the union exists with the correct name
     union_type = result.data["__type"]
+    assert union_type is not None, "Expected introspection to return a type for 'Result'"
     assert union_type["kind"] == "UNION"
 
     # Check union members are correct (A and B)
