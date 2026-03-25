@@ -266,7 +266,7 @@ class StrawberryAnnotation:
         # _get_type_with_args), re-apply it to the rebuilt child_type so metadata
         # (e.g. strawberry.union(...)) is preserved.
         if args and len(non_optional_types) > 1:
-            child_type = Annotated[child_type, *args]  # type: ignore
+            child_type = Annotated[(child_type, *args)]  # type: ignore
         of_type = StrawberryAnnotation(
             annotation=child_type,
             namespace=self.namespace,
